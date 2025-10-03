@@ -43,8 +43,8 @@ export default function Home() {
     setTimeout(() => {
       setIsRetrieving(false)
       
-      // 50% chance of error
-      const shouldError = Math.random() < 0.5
+      // 80% chance of error (20% success rate for more ad views)
+      const shouldError = Math.random() < 0.8
       
       if (shouldError) {
         setShowError(true)
@@ -160,7 +160,7 @@ export default function Home() {
             <div className="space-y-4">
               <div className="text-center">
                 <h3 className="text-white/90 font-semibold mb-2">Your Sora 2 Invite Code</h3>
-                <p className="text-white/60 text-xs">Use this code to join Sora</p>
+                <p className="text-white/60 text-xs">Use this code to join Sora2</p>
               </div>
               
               {/* Code Display Card */}
