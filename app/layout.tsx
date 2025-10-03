@@ -43,6 +43,13 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
         
+        {/* AdMaven Popunder - Replace XXXXXX with your actual zone ID */}
+        <Script
+          type="text/javascript"
+          src="//acacdn.com/script/suurl.php?zoneid=XXXXXX"
+          strategy="afterInteractive"
+        />
+        
         {/* Background Video */}
         <BackgroundVideo />
         

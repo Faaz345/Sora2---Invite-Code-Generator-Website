@@ -5,9 +5,11 @@ import CloudIcon from '@/components/CloudIcon'
 import LoginScreen from '@/components/LoginScreen'
 import AdContainer from '@/components/AdContainer'
 import ReviewModal from '@/components/ReviewModal'
+import FloatingReviews from '@/components/FloatingReviews'
 import { Button } from '@/components/ui/stateful-button'
 import { generateCode } from '@/lib/generateCode'
 import { adConfig } from '@/lib/adConfig'
+import { addStoredReview } from '@/lib/reviews'
 
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -31,7 +33,14 @@ export default function Home() {
     setIsLoggedIn(true)
   }
 
-  const handleGetCodes = () => {
+  const handleReviewSubmit = (review: { stars: number; working: 'working' | 'not-working' | null; feedback: string }) => {
+    console.log('User review:', review)
+    // Save to localStorage so it can appear in FloatingReviews
+    addStoredReview(review)
+    // In a real app, you would also send this to your backend/database
+  }
+
+  const handleGetCodes = async () => {
     // Reset states
     setShowError(false)
     setGeneratedCode('')
@@ -42,19 +51,31 @@ export default function Home() {
     // Simulate retrieving from servers (3-6 seconds)
     const retrievalTime = Math.floor(Math.random() * 3000) + 3000
     
-    setTimeout(() => {
-      setIsRetrieving(false)
-      
-      // 80% chance of error (20% success rate for more ad views)
-      const shouldError = Math.random() < 0.8
-      
-      if (shouldError) {
+    setTimeout(async () => {
+      try {
+        // Fetch code from Google Sheets API
+        const response = await fetch('/api/get-code', {
+          method: 'GET',
+          cache: 'no-store'
+        })
+        
+        const data = await response.json()
+        
+        setIsRetrieving(false)
+        
+        if (data.success && data.code) {
+          // Success - show the code from Google Sheet
+          setGeneratedCode(data.code)
+        } else {
+          // Error - show error message (90% of the time or when sheet is empty)
+          setShowError(true)
+          setErrorMessage(data.message || 'No codes available at the moment. Please try again later.')
+        }
+      } catch (error) {
+        console.error('Error fetching code:', error)
+        setIsRetrieving(false)
         setShowError(true)
-        setErrorMessage('No codes available at the moment. Please try again later.')
-      } else {
-        // Generate single code
-        const code = generateCode()
-        setGeneratedCode(code)
+        setErrorMessage('OpenAI servers are currently overloaded. Please try again later.')
       }
     }, retrievalTime)
   }
@@ -66,7 +87,11 @@ export default function Home() {
 
   // Show main content if logged in
   return (
-    <div className="w-full max-w-xl">
+    <>
+      {/* Floating Reviews in Background */}
+      <FloatingReviews />
+      
+      <div className="w-full max-w-xl relative z-10">
       <div className="glass-card-enhanced rounded-3xl p-6 md:p-10 shadow-2xl">
         {/* Cloud Icon */}
         <div className="flex justify-center mb-4">
@@ -236,8 +261,10 @@ export default function Home() {
       {/* Review Modal */}
       <ReviewModal 
         isOpen={showReviewModal} 
-        onClose={() => setShowReviewModal(false)} 
+        onClose={() => setShowReviewModal(false)}
+        onSubmit={handleReviewSubmit}
       />
-    </div>
+      </div>
+    </>
   )
 }

@@ -240,6 +240,41 @@
       transform: translateY(-10px);
     }
   }
+
+  /* Subtle glass card for floating reviews */
+  .glass-card-subtle {
+    background: rgba(10, 14, 39, 0.85);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.5),
+      0 2px 8px 0 rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  }
+
+  /* Floating review animation */
+  @keyframes floatReview {
+    0% {
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+    }
+    10% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    90% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.95);
+    }
+  }
+
+  .animate-float-review {
+    animation: floatReview 8s ease-in-out infinite;
+  }
 }
 
 /* Focus visible styles for accessibility */
