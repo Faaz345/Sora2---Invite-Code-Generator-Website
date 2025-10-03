@@ -11,8 +11,6 @@ import { adConfig } from '@/lib/adConfig'
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [generatedCode, setGeneratedCode] = useState('')
-  const [isWatchingAd, setIsWatchingAd] = useState(false)
-  const [adCountdown, setAdCountdown] = useState(5)
   const [isRetrieving, setIsRetrieving] = useState(false)
   const [showError, setShowError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
@@ -25,38 +23,6 @@ export default function Home() {
     }
   }, [])
 
-  // Ad countdown timer
-  useEffect(() => {
-    if (isWatchingAd && adCountdown > 0) {
-      const timer = setTimeout(() => setAdCountdown(adCountdown - 1), 1000)
-      return () => clearTimeout(timer)
-    } else if (isWatchingAd && adCountdown === 0) {
-      // Ad finished, start retrieving
-      setIsWatchingAd(false)
-      setIsRetrieving(true)
-      
-      // Simulate retrieving from servers (3-5 seconds)
-      const retrievalTime = Math.floor(Math.random() * 3000) + 3000 // 3-6 seconds
-      
-      setTimeout(() => {
-        setIsRetrieving(false)
-        
-        // 50% chance of error
-        const shouldError = Math.random() < 0.5
-        
-        if (shouldError) {
-          setShowError(true)
-          setErrorMessage('No codes available at the moment. Please try again later.')
-          setAdCountdown(5)
-        } else {
-          // Generate single code
-          const code = generateCode()
-          setGeneratedCode(code)
-          setAdCountdown(5)
-        }
-      }, retrievalTime)
-    }
-  }, [isWatchingAd, adCountdown])
 
   const handleLogin = () => {
     sessionStorage.setItem('isLoggedIn', 'true')
@@ -67,10 +33,28 @@ export default function Home() {
     // Reset states
     setShowError(false)
     setGeneratedCode('')
-    setIsRetrieving(false)
-    // Start ad watching
-    setIsWatchingAd(true)
-    setAdCountdown(5)
+    
+    // Start retrieving immediately
+    setIsRetrieving(true)
+    
+    // Simulate retrieving from servers (3-6 seconds)
+    const retrievalTime = Math.floor(Math.random() * 3000) + 3000
+    
+    setTimeout(() => {
+      setIsRetrieving(false)
+      
+      // 50% chance of error
+      const shouldError = Math.random() < 0.5
+      
+      if (shouldError) {
+        setShowError(true)
+        setErrorMessage('No codes available at the moment. Please try again later.')
+      } else {
+        // Generate single code
+        const code = generateCode()
+        setGeneratedCode(code)
+      }
+    }, retrievalTime)
   }
 
   // Show login screen if not logged in
@@ -169,13 +153,6 @@ export default function Home() {
             >
               Try Again
             </Button>
-          </div>
-        ) : isWatchingAd ? (
-          <div className="space-y-6">
-            {/* Real Ad Container */}
-            <AdContainer type="video" />
-            
-            <p className="text-center text-white/50 text-xs">💡 Your code will appear automatically</p>
           </div>
         ) : generatedCode ? (
           <div className="space-y-5">
