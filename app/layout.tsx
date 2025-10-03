@@ -19,6 +19,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Google AdSense Verification */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3262729392815"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      </head>
       <body className={inter.className}>
         {/* PropellerAds Multitag */}
         <Script
