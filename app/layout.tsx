@@ -18,6 +18,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* PropellerAds Multitag */}
+        <script
+          src="https://fpyf8.com/88/tag.min.js"
+          data-zone="175584"
+          async
+          data-cfasync="false"
+        ></script>
+      </head>
       <body className={inter.className}>
         {/* Background Video */}
         <BackgroundVideo />
