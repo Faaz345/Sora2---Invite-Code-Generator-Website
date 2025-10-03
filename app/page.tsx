@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import CloudIcon from '@/components/CloudIcon'
 import LoginScreen from '@/components/LoginScreen'
 import AdContainer from '@/components/AdContainer'
+import ReviewModal from '@/components/ReviewModal'
 import { Button } from '@/components/ui/stateful-button'
 import { generateCode } from '@/lib/generateCode'
 import { adConfig } from '@/lib/adConfig'
@@ -14,6 +15,7 @@ export default function Home() {
   const [isRetrieving, setIsRetrieving] = useState(false)
   const [showError, setShowError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+  const [showReviewModal, setShowReviewModal] = useState(false)
 
   // Check if user is already logged in
   useEffect(() => {
@@ -197,6 +199,17 @@ export default function Home() {
             {/* Banner Ad */}
             <AdContainer type="banner" />
 
+            {/* Review Button */}
+            <button
+              onClick={() => setShowReviewModal(true)}
+              className="w-full py-3 px-6 rounded-2xl bg-gradient-to-r from-blue-500/20 to-violet-500/20 border border-blue-500/30 text-white font-semibold hover:bg-gradient-to-r hover:from-blue-500/30 hover:to-violet-500/30 transition-all duration-200 flex items-center justify-center gap-2"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+              </svg>
+              Rate This Code
+            </button>
+
             {/* Get New Code Button */}
             <Button
               onClick={handleGetCodes}
@@ -219,6 +232,12 @@ export default function Home() {
           </div>
         )}
       </div>
+      
+      {/* Review Modal */}
+      <ReviewModal 
+        isOpen={showReviewModal} 
+        onClose={() => setShowReviewModal(false)} 
+      />
     </div>
   )
 }
