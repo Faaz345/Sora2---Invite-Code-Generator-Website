@@ -5,11 +5,13 @@ import CloudIcon from '@/components/CloudIcon'
 import LoginScreen from '@/components/LoginScreen'
 import AdContainer from '@/components/AdContainer'
 import ReviewModal from '@/components/ReviewModal'
+import PaymentModal from '@/components/PaymentModal'
 import FloatingReviews from '@/components/FloatingReviews'
 import { Button } from '@/components/ui/stateful-button'
 import { generateCode } from '@/lib/generateCode'
 import { adConfig } from '@/lib/adConfig'
 import { addStoredReview } from '@/lib/reviews'
+import { loadRazorpayScript, initRazorpay, PAYMENT_CONFIG, convertToPaise, RazorpayResponse } from '@/lib/razorpay'
 
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -18,6 +20,7 @@ export default function Home() {
   const [showError, setShowError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [showReviewModal, setShowReviewModal] = useState(false)
+  const [showPaymentModal, setShowPaymentModal] = useState(false)
 
   // Check if user is already logged in
   useEffect(() => {
@@ -38,6 +41,10 @@ export default function Home() {
     // Save to localStorage so it can appear in FloatingReviews
     addStoredReview(review)
     // In a real app, you would also send this to your backend/database
+  }
+
+  const handleInstantPayment = () => {
+    setShowPaymentModal(true)
   }
 
   const handleGetCodes = async () => {
@@ -208,6 +215,33 @@ export default function Home() {
             >
               Try Again
             </Button>
+            
+            {/* Instant Payment Option */}
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-white/20"></div>
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-transparent px-2 text-white/50">Or</span>
+              </div>
+            </div>
+            
+            <button
+              onClick={handleInstantPayment}
+              className="w-full py-3 px-6 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold hover:from-green-600 hover:to-emerald-600 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <span>Get Instant Code - ₹{PAYMENT_CONFIG.INSTANT_CODE_PRICE}</span>
+              <span className="ml-auto bg-white/20 px-2 py-0.5 rounded-full text-xs group-hover:bg-white/30 transition-colors">
+                100% Success
+              </span>
+            </button>
+            
+            <p className="text-center text-white/40 text-xs mt-2">
+              💳 Secure payment via Razorpay • Instant delivery
+            </p>
           </div>
         ) : generatedCode ? (
           <div className="space-y-5">
@@ -280,8 +314,51 @@ export default function Home() {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
               </svg>
-              Get Codes
+              Get Codes Free
             </Button>
+            
+            {/* Separator */}
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-white/20"></div>
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-transparent px-2 text-white/50">Or Skip The Wait</span>
+              </div>
+            </div>
+            
+            {/* Instant Payment Option */}
+            <button
+              onClick={handleInstantPayment}
+              className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold hover:from-green-600 hover:to-emerald-600 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 group relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+              <svg className="w-6 h-6 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <div className="flex-1 text-left relative z-10">
+                <div className="font-bold text-lg">Get Instant Code</div>
+                <div className="text-white/80 text-xs">100% Success • No Waiting</div>
+              </div>
+              <div className="bg-white/20 px-3 py-1.5 rounded-full font-bold text-lg relative z-10 group-hover:bg-white/30 transition-colors">
+                ₹{PAYMENT_CONFIG.INSTANT_CODE_PRICE}
+              </div>
+            </button>
+            
+            <div className="flex items-center justify-center gap-4 text-white/40 text-xs">
+              <div className="flex items-center gap-1">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>Secure Payment</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                </svg>
+                <span>Instant Delivery</span>
+              </div>
+            </div>
           </div>
         )}
       </div>
@@ -291,6 +368,12 @@ export default function Home() {
         isOpen={showReviewModal} 
         onClose={() => setShowReviewModal(false)}
         onSubmit={handleReviewSubmit}
+      />
+      
+      {/* Payment Modal */}
+      <PaymentModal 
+        isOpen={showPaymentModal}
+        onClose={() => setShowPaymentModal(false)}
       />
       </div>
     </>
