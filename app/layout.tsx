@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import Logo from '@/components/Logo'
 import BackgroundVideo from '@/components/BackgroundVideo'
 import './globals.css'
@@ -18,22 +19,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
+      <body className={inter.className}>
         {/* PropellerAds Multitag */}
-        <script
+        <Script
           src="https://fpyf8.com/88/tag.min.js"
           data-zone="175584"
-          async
+          strategy="afterInteractive"
           data-cfasync="false"
-        ></script>
+        />
         
         {/* Adsterra Popunder */}
-        <script
-          type="text/javascript"
-          src="//pl27774922.revenuecpmgate.com/88/17/48/881748b739de657787d5f0183f6b5624.js"
-        ></script>
-      </head>
-      <body className={inter.className}>
+        <Script
+          src="https://pl27774922.revenuecpmgate.com/88/17/48/881748b739de657787d5f0183f6b5624.js"
+          strategy="afterInteractive"
+        />
+        
         {/* Background Video */}
         <BackgroundVideo />
         
