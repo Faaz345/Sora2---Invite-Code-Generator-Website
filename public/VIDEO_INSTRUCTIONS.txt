@@ -1,0 +1,39 @@
+🎥 HOW TO ADD BACKGROUND VIDEO
+================================
+
+1. Place your video file in this folder (public/)
+
+2. Supported file names and formats:
+   - background.mp4  (recommended, best compatibility)
+   - background.webm (optional, for better compression)
+
+3. Video will:
+   ✓ Auto-play on page load
+   ✓ Loop infinitely
+   ✓ Play muted (required for autoplay)
+   ✓ Cover entire background
+   ✓ Display at 40% opacity
+
+4. Recommended video specs:
+   - Resolution: 1920x1080 (Full HD) or higher
+   - Format: MP4 (H.264 codec)
+   - Frame rate: 30fps or 60fps
+   - File size: Keep under 10MB for fast loading
+   - Length: 10-30 seconds (since it loops)
+
+5. File path:
+   public/
+   └── background.mp4  <-- PUT YOUR VIDEO HERE
+
+6. Full file path example:
+   C:\Users\faazr\OneDrive\Desktop\Sora 2 Code generation website\public\background.mp4
+
+7. IMPORTANT NOTES:
+   - Video must be muted to autoplay (browser requirement)
+   - If video fails to load, starry background will show as fallback
+   - Use both .mp4 and .webm for best browser compatibility (optional)
+
+After adding the file, refresh your browser to see the video background!
+
+PRO TIP: For best results, use a dark or subtle video that won't distract
+from the main content. The video opacity is set to 40% to maintain readability.

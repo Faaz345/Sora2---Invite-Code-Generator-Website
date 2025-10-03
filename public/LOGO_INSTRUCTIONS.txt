@@ -1,0 +1,42 @@
+📁 HOW TO ADD YOUR LOGOS
+========================
+
+You can add TWO logos to your site:
+
+🔹 LEFT LOGO (next to "Sora 2 Generator" text)
+   File name: left-logo.png
+   Size: Height 40-48px (mobile), 48-56px (desktop)
+   Location: public/left-logo.png
+
+🔹 RIGHT LOGO (top right corner)
+   File name: logo.png
+   Size: Height 64px (mobile), 80px (desktop)
+   Location: public/logo.png
+
+
+📋 INSTRUCTIONS:
+
+1. Place your logo image files in this folder (public/)
+   
+2. Name them:
+   - Left logo: left-logo.png
+   - Right logo: logo.png
+   (or update filenames in components/LeftLogo.tsx and components/Logo.tsx)
+
+3. Supported formats: PNG, JPG, SVG, WEBP
+
+4. Recommended: 
+   - Transparent background (PNG) works best
+   - SVG for sharp scaling
+
+5. File structure:
+   public/
+   ├── left-logo.png   <-- LEFT SIDE LOGO
+   └── logo.png        <-- RIGHT SIDE LOGO
+
+
+📂 EXAMPLE PATHS:
+- C:\Users\faazr\OneDrive\Desktop\Sora 2 Code generation website\public\left-logo.png
+- C:\Users\faazr\OneDrive\Desktop\Sora 2 Code generation website\public\logo.png
+
+After adding the files, refresh your browser to see the logos!
