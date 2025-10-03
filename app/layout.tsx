@@ -10,6 +10,11 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Sora 2 Code Generator',
   description: 'Generate exclusive Sora 2 invite codes',
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/favicon.png',
+    apple: '/icon.png',
+  },
 }
 
 export default function RootLayout({
