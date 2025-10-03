@@ -233,7 +233,7 @@ export default function Home() {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
-              <span>Get Instant Code - ₹{PAYMENT_CONFIG.INSTANT_CODE_PRICE}</span>
+              <span>Get Instant Code - ${PAYMENT_CONFIG.INSTANT_CODE_PRICE}</span>
               <span className="ml-auto bg-white/20 px-2 py-0.5 rounded-full text-xs group-hover:bg-white/30 transition-colors">
                 100% Success
               </span>
@@ -341,7 +341,7 @@ export default function Home() {
                 <div className="text-white/80 text-xs">100% Success • No Waiting</div>
               </div>
               <div className="bg-white/20 px-3 py-1.5 rounded-full font-bold text-lg relative z-10 group-hover:bg-white/30 transition-colors">
-                ₹{PAYMENT_CONFIG.INSTANT_CODE_PRICE}
+                ${PAYMENT_CONFIG.INSTANT_CODE_PRICE}
               </div>
             </button>
             

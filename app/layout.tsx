@@ -101,7 +101,7 @@ export default function RootLayout({
         <BackgroundVideo />
         
         <div className="min-h-screen flex flex-col">
-          <header className="relative z-10 p-6">
+          <header className="relative z-10 px-6 pt-3 pb-4">
             <div className="flex items-center justify-start">
               {/* Logo in top left */}
               <Logo />

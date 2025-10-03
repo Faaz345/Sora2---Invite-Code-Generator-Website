@@ -81,11 +81,11 @@ export const PAYMENT_CONFIG = {
   // Razorpay Payment Link
   PAYMENT_LINK: 'https://rzp.io/rzp/6OPOzlvU',
   
-  // Pricing (in INR)
-  INSTANT_CODE_PRICE: 99, // ₹99 for instant code
+  // Pricing
+  INSTANT_CODE_PRICE: 2, // $2 for instant code
   
   // Payment details
-  CURRENCY: 'INR',
+  CURRENCY: 'USD',
   COMPANY_NAME: 'GetSora2',
   COMPANY_LOGO: '/icon.png',
   THEME_COLOR: '#8b5cf6', // Purple theme
