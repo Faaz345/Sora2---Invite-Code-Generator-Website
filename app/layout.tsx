@@ -26,6 +26,12 @@ export default function RootLayout({
           async
           data-cfasync="false"
         ></script>
+        
+        {/* Adsterra Popunder */}
+        <script
+          type="text/javascript"
+          src="//pl27774922.revenuecpmgate.com/88/17/48/881748b739de657787d5f0183f6b5624.js"
+        ></script>
       </head>
       <body className={inter.className}>
         {/* Background Video */}
