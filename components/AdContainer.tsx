@@ -69,13 +69,6 @@ export default function AdContainer({ type, onAdComplete }: AdContainerProps) {
             data-full-width-responsive="true"
           />
         )}
-        
-        {/* Placeholder when no ads enabled */}
-        {!adConfig.googleAdSense.enabled && (
-          <div className="bg-white/5 border border-white/20 rounded-xl p-4 text-center text-white/50 text-sm">
-            Ad Space - Configure in lib/adConfig.ts
-          </div>
-        )}
       </div>
     )
   }
