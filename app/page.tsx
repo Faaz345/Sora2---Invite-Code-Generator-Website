@@ -175,14 +175,6 @@ export default function Home() {
             {/* Real Ad Container */}
             <AdContainer type="video" />
             
-            {/* Countdown Timer */}
-            <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border border-white/30">
-                <span className="text-3xl font-bold text-white">{adCountdown}</span>
-              </div>
-              <p className="text-white/60 text-xs mt-2">seconds remaining</p>
-            </div>
-            
             <p className="text-center text-white/50 text-xs">💡 Your code will appear automatically</p>
           </div>
         ) : generatedCode ? (
