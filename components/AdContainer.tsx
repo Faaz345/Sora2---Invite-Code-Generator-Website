@@ -83,23 +83,7 @@ export default function AdContainer({ type, onAdComplete }: AdContainerProps) {
   if (type === 'video') {
     return (
       <div className="ad-video-container">
-        {adConfig.videoAds.enabled ? (
-          <div id={`video-ad-${adConfig.videoAds.zoneId}`} className="min-h-[300px] rounded-xl overflow-hidden" />
-        ) : (
-          <div className="bg-gradient-to-br from-violet-600/30 to-blue-600/30 rounded-2xl p-8 border border-white/20 backdrop-blur-sm">
-            <div className="text-center space-y-4">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm">
-                <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-white mb-2">Ad Loading...</h3>
-                <p className="text-white/70 text-sm">Configure video ads in lib/adConfig.ts</p>
-              </div>
-            </div>
-          </div>
-        )}
+        <div id={`video-ad-${adConfig.videoAds.zoneId}`} className="min-h-[300px] rounded-xl overflow-hidden" />
       </div>
     )
   }
