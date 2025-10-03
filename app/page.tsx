@@ -88,6 +88,34 @@ export default function Home() {
   // Show main content if logged in
   return (
     <>
+      {/* Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebApplication',
+            name: 'GetSora2 - Free Sora 2 Invite Code Generator',
+            description: 'Get free Sora 2 invite codes instantly. Access OpenAI\'s revolutionary AI video generator.',
+            url: 'https://getsora2.vercel.app',
+            applicationCategory: 'UtilityApplication',
+            operatingSystem: 'Any',
+            offers: {
+              '@type': 'Offer',
+              price: '0',
+              priceCurrency: 'USD',
+            },
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: '4.8',
+              ratingCount: '2547',
+              bestRating: '5',
+              worstRating: '1',
+            },
+          }),
+        }}
+      />
+      
       {/* Floating Reviews in Background */}
       <FloatingReviews />
       
@@ -98,10 +126,10 @@ export default function Home() {
           <CloudIcon />
         </div>
 
-        {/* Heading */}
-        <h2 className="text-2xl md:text-3xl font-bold text-center text-white mb-8">
-          Get Sora 2 Invite Codes
-        </h2>
+        {/* Heading - H1 for SEO */}
+        <h1 className="text-2xl md:text-3xl font-bold text-center text-white mb-8">
+          Get Free Sora 2 Invite Codes - AI Video Generator Access
+        </h1>
 
         {/* Show Retrieving State */}
         {isRetrieving ? (

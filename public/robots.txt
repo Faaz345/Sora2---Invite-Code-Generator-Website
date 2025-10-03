@@ -1,0 +1,14 @@
+# robots.txt for GetSora2
+
+# Allow all search engines to crawl everything
+User-agent: *
+Allow: /
+
+# Disallow API endpoints from search results
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://getsora2.vercel.app/sitemap.xml
+
+# Crawl-delay for polite bots
+Crawl-delay: 1
