@@ -1,60 +1,115 @@
-# Invite Portal
+# 🚀 Sora 2 - Invite Code Generator Website
 
-A minimal Next.js site featuring a starry night background with a centered glass-effect modal for entering invite codes.
+A professional web application for generating Sora 2 invite codes with integrated payment options and multi-network advertising.
 
-## Features
+![License](https://img.shields.io/badge/License-Proprietary-red.svg)
+![Next.js](https://img.shields.io/badge/Next.js-14-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-38B2AC)
 
-- 🌌 Fullscreen starry night background (pure CSS)
-- 🎨 Glass-effect modal with rounded corners
-- ☁️ Original neutral cloud mascot SVG
-- 🔢 Six-slot OTP input with:
-  - Typing support (A-Z, 0-9)
-  - Backspace/arrow navigation
-  - Paste support (6 characters)
-  - Auto-advance on entry
-- 🎲 Random code generator
-- ♿ Accessibility features:
-  - Visible focus rings
-  - Semantic labels
-  - ARIA live regions
-  - High contrast
-- 🚀 Built with Next.js App Router, React, and Tailwind CSS
+## 🌟 Features
 
-## Getting Started
+- **Dynamic Code Generation**: Fetch invite codes from Google Sheets with 10% success rate
+- **Payment Integration**: Razorpay payment gateway for instant code purchase (₹99)
+- **Multi-Network Ads**: PropellerAds, Adsterra, AdMaven, Google AdSense integration
+- **User Reviews System**: Floating reviews with star ratings and social proof
+- **SEO Optimized**: Complete meta tags, structured data, sitemap, and robots.txt
+- **Responsive Design**: Beautiful UI with glass morphism effects and animations
+- **Cloud Branding**: Custom cloud logo with floating animations
 
-1. Install dependencies:
-```bash
-npm install
-```
+## 🛠️ Tech Stack
 
-2. Run the development server:
-```bash
-npm run dev
-```
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: Aceternity UI, Framer Motion
+- **Payment**: Razorpay
+- **Ad Networks**: PropellerAds, Adsterra, AdMaven, Google AdSense
+- **Deployment**: Vercel
+- **Data Source**: Google Sheets API
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Usage
-
-- **Enter Code**: Type or paste a 6-character invite code (A-Z, 0-9)
-- **Generate Code**: Click "Generate random code" to auto-fill with a random code
-- **Submit**: The "Join new app" button activates when all 6 slots are filled
-- **Skip**: Click "Continue without code" to proceed without an invite
-
-## Structure
+## 📁 Project Structure
 
 ```
 ├── app/
-│   ├── layout.tsx          # Root layout with header/footer
-│   ├── page.tsx            # Main page with modal
-│   └── globals.css         # Global styles + starry background
+│   ├── api/
+│   │   ├── fetch-codes/
+│   │   └── verify-payment/
+│   ├── layout.tsx
+│   └── page.tsx
 ├── components/
-│   ├── CloudIcon.tsx       # Original cloud SVG mascot
-│   └── OtpInput.tsx        # Accessible OTP input component
-└── lib/
-    └── generateCode.ts     # Random code generator utility
+│   ├── CloudIcon.tsx
+│   ├── ReviewModal.tsx
+│   ├── FloatingReviews.tsx
+│   └── ui/
+│       └── stateful-button.tsx
+├── public/
+│   ├── cloud logo.png
+│   ├── favicon.ico
+│   ├── sitemap.xml
+│   ├── robots.txt
+│   └── sw.js
+├── lib/
+│   └── utils.ts
+└── Documentation Files
 ```
 
-## Note
+## 🚀 Live Demo
 
-This is an independent demo project and is not affiliated with any third party.
+Visit the live site: [getsora2.vercel.app](https://getsora2.vercel.app)
+
+## 💰 Monetization
+
+This project implements multiple revenue streams:
+
+1. **Ad Networks**: 
+   - PropellerAds (Multitag & Popunders)
+   - Adsterra (Popunders)
+   - AdMaven (Popunders)
+   - Google AdSense (Display Ads)
+
+2. **Payment Gateway**:
+   - Razorpay integration for instant code purchase
+   - Price: ₹99 per instant code
+
+## 📊 Key Features Details
+
+### Dynamic Code Fetching
+- Codes fetched from public Google Sheet
+- 10% success rate to maximize ad impressions
+- Server-side validation and parsing
+
+### User Review System
+- Local storage-based review management
+- Star rating (1-5 stars)
+- Floating social proof reviews
+- Automatic review display animation
+
+### SEO Optimization
+- Complete meta tags and Open Graph
+- JSON-LD structured data
+- XML sitemap
+- Optimized robots.txt
+- Proper favicon setup
+
+## 🔐 License
+
+**Copyright © 2025 Faaz345. All Rights Reserved.**
+
+This software is proprietary and confidential. **No copying, editing, or redistribution is permitted** without express written permission from the copyright holder.
+
+See [LICENSE](LICENSE) file for complete details.
+
+## ⚠️ Important Notice
+
+This repository is provided for **viewing purposes only**. Any unauthorized use, reproduction, modification, or distribution is strictly prohibited and may result in legal action.
+
+## 📧 Contact
+
+For permissions, licensing inquiries, or business proposals, please contact the repository owner through GitHub.
+
+---
+
+**Built with ❤️ by Faaz345**
+
+*This is a proprietary project. All rights reserved.*
