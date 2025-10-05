@@ -70,7 +70,7 @@ This project implements multiple revenue streams:
 
 2. **Payment Gateway**:
    - Razorpay integration for instant code purchase
-   - Price: ₹99 per instant code
+   - Price: $2 per instant code
 
 ## 📊 Key Features Details
 
